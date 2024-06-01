@@ -61,3 +61,6 @@ typings/
 # Electron Build output
 dist/
 out/
+
+# Because mac
+.DS_Store

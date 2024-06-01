@@ -12,16 +12,17 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false,
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
         node_version: [22]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -35,7 +36,7 @@ jobs:
         run: npm run dist
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-artifacts
           path: |

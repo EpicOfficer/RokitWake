@@ -3,6 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>RokitWake</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #282a36; /* Dracula Background */
+            color: #f8f8f2; /* Dracula Foreground */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding: 1em;
+            text-align: center;
+            width: 100%;
+        }
+        label {
+            font-size: 1.1em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        input {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+            color: #f8f8f2; /* Dracula Foreground */
+            background-color: #44475a; /* Dracula Comment */
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 0.5em;
+            padding: 0.5em;
+            font-size: 1em;
+            color: #f8f8f2; /* Dracula Foreground */
+            background-color: #6272a4; /* Dracula Cyan */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #7178d4; /* A Lighter Cyan */
+        }
+    </style>
 </head>
 <body>
 <script>
@@ -45,17 +96,18 @@
             oscillator.disconnect(audioCtx.destination);
         }
     }
-
-    window.addEventListener("blur", () => {
-        playTone();
-        setToneInterval();
-    });
 </script>
 <form>
-    <label for="frequency">Frequency (in Hz):</label><br>
-    <input onchange="playTone(); setToneInterval()" type="text" id="frequency" name="frequency" value="10"><br>
-    <label for="interval">Interval (in seconds):</label><br>
-    <input onchange="playTone(); setToneInterval()" type="text" id="interval" name="interval" value="1500"><br/>
+    <div>
+        <label for="frequency">Frequency (in Hz)</label>
+        <input onchange="playTone(); setToneInterval()" type="text" id="frequency" name="frequency" value="10">
+    </div>
+
+    <div>
+        <label for="interval">Interval (in seconds)</label>
+        <input onchange="playTone(); setToneInterval()" type="text" id="interval" name="interval" value="1500">
+    </div>
+
     <button type="button" onclick="playTone(); setToneInterval()">Apply</button>
 </form>
 </body>

@@ -6,9 +6,12 @@ let tray;
 
 function createWindow () {
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 400,
+        height: 300,
         show: false,
+        resizable: false,
+        autoHideMenuBar: true,
+        darkTheme: true,
         webPreferences: {
             nodeIntegration: true,
             backgroundThrottling: false

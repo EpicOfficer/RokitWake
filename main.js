@@ -7,12 +7,16 @@ const interval = 1500; // 25 minutes
 let win;
 let tray;
 
+function playTone() {
+    return win.webContents.executeJavaScript(`playTone(${frequency});`);
+}
+
 function createTray() {
     tray = new Tray(path.join(__dirname, 'tray.png'));
 
     const contextMenu = Menu.buildFromTemplate([
-        {label: 'Test', click: () => win.webContents.executeJavaScript(`playTone(${frequency});`)},
-        {label: 'Exit', click:  function(){ app.quit(); } }
+        {label: 'Test', click: () => playTone()},
+        {label: 'Exit', click: () => app.quit()}
     ]);
 
     tray.setContextMenu(contextMenu);
@@ -20,12 +24,7 @@ function createTray() {
 
 function createWindow () {
     win = new BrowserWindow({
-        width: 225,
-        height: 175,
         show: false,
-        resizable: false,
-        autoHideMenuBar: true,
-        darkTheme: true,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -46,13 +45,13 @@ function createWindow () {
                 setTimeout(() => oscillator.stop(), 1000);
             }
         </script>
-  `).then();
+    `).then(() => {
+        playTone();
+        setInterval(playTone, interval * 1000);
+    });
 }
 
 app.whenReady().then(() => {
     createTray();
     createWindow();
-
-    win.webContents.executeJavaScript(`playTone(${frequency});`);
-    setInterval(() => { win.webContents.executeJavaScript(`playTone(${frequency});`); }, interval * 1000);
 })

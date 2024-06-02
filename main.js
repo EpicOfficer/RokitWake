@@ -20,7 +20,7 @@ function createTray() {
     ]);
 
     tray.setContextMenu(contextMenu);
-    tray.on('click', () => { tray.popUpContextMenu(contextMenu); }); }
+    tray.on('click', () => { tray.popUpContextMenu(contextMenu); });
 }
 
 function createWindow () {

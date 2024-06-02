@@ -10,7 +10,7 @@
   },
   "build": {
     "appId": "stream.epicofficer.rokitwake",
-    "productName":"RokitWake",
+    "productName": "RokitWake",
     "mac": {
       "category": "public.app-category.developer-tools",
       "target": [
@@ -52,5 +52,8 @@
     "electron": "^30.0.9",
     "electron-builder": "^24.13.3",
     "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "play-sound": "^1.1.6"
   }
 }

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # Add manual trigger
+  schedule:  # Add scheduled build
+    - cron: '0 15 * * 3'  # Runs at 3pm every Wednesday
 
 jobs:
   build:
